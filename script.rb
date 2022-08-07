@@ -5,15 +5,23 @@ class BoardRow
 end
 
 class Board
-  def initalize(size)
+  def initalize(size, target_code)
     @rows = Array.new(size, BoardRow.new)
     @current_row_index = 0
+    @target_code = target_code
   end
 end
 
 class Game
+  ROLE = {
+    master: 0,
+    breaker: 1
+  }
   def initalize(codemaster_class, codebreaker_class)
-    @board = Board.new(12)
+    @players = [codemaster_class.new(self, ROLE[:master]),
+                codebreaker_class.new(self, ROLE[:breaker])]
+
+    @board = Board.new(12, @players[ROLE[:master]].generate_code)
   end
 end
 
