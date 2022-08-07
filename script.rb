@@ -17,11 +17,15 @@ class Game
     master: 0,
     breaker: 1
   }
-  def initalize(codemaster_class, codebreaker_class)
+  def initialize(codemaster_class, codebreaker_class)
     @players = [codemaster_class.new(self, ROLE[:master]),
                 codebreaker_class.new(self, ROLE[:breaker])]
 
     @board = Board.new(12, @players[ROLE[:master]].generate_code)
+  end
+
+  def playable_characters
+    ["A", "B", "C", "D", "E", "F"]
   end
 end
 
@@ -32,3 +36,16 @@ class Player
   end
   attr_reader :role
 end
+
+class HumanPlayer < Player
+end
+
+class ComputerPlayer < Player
+  def generate_code
+    code = []
+    4.times { code.push(@game.playable_characters.shuffle.first) }
+    code
+  end
+end
+
+game = Game.new(ComputerPlayer, HumanPlayer)
