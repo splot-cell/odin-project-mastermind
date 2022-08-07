@@ -16,3 +16,11 @@ class Game
     @board = Board.new(12)
   end
 end
+
+class Player
+  def initialize(game, role)
+    @game = game
+    @role = role
+  end
+  attr_reader :role
+end
