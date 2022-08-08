@@ -10,6 +10,20 @@ class Code
   def equal_to?(target)
     @code == target.code
   end
+
+  def num_of_elements_correct_position(target)
+    index = 0
+    @code.reduce { |sum, element|
+      if element = target[index]
+        sum += 1
+      end
+      index += 1
+      sum
+    }
+  end
+
+  def num_of_elements_wrong_position(target)
+  end
 end
 
 class Board
