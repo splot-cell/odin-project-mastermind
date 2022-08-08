@@ -20,12 +20,12 @@ class Board
   end
 
   def current_guess_correct?
-    return if @total_guesses = 0
+    return if @total_guesses == 0
     @rows[@total_guesses - 1].equal_to?(@target_code)
   end
 
   def submit_guess(guess)
-    @rows.push(Code(guess))
+    @rows.push(Code.new(guess))
     @total_guesses += 1
   end
 end
@@ -42,6 +42,7 @@ class Game
 
     @board = Board.new(@players[ROLE[:master]].generate_code)
   end
+  attr_reader :board
 
   def playable_characters
     ["A", "B", "C", "D", "E", "F"]
