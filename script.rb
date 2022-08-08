@@ -1,5 +1,5 @@
 class Code
-  def initalize(code)
+  def initialize(code)
     @code = code
   end
 
@@ -13,7 +13,7 @@ class Code
 end
 
 class Board
-  def initalize(target_code)
+  def initialize(target_code)
     @rows = []
     @total_guesses = 0
     @target_code = Code.new(target_code)
@@ -24,8 +24,10 @@ class Board
     @rows[@total_guesses - 1].equal_to?(@target_code)
   end
 
-  def submit_guess
-
+  def submit_guess(guess)
+    @rows.push(Code(guess))
+    @total_guesses += 1
+  end
 end
 
 class Game
@@ -66,3 +68,7 @@ class ComputerPlayer < Player
 end
 
 game = Game.new(ComputerPlayer, HumanPlayer)
+
+
+
+six = 6
