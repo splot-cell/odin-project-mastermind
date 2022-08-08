@@ -13,8 +13,8 @@ class Code
 
   def num_of_elements_correct_position(target)
     index = 0
-    @code.reduce { |sum, element|
-      if element = target[index]
+    @code.reduce(0) { |sum, element|
+      if element == target.code[index]
         sum += 1
       end
       index += 1
@@ -23,6 +23,7 @@ class Code
   end
 
   def num_of_elements_wrong_position(target)
+    placeholder = 1
   end
 end
 
@@ -41,6 +42,12 @@ class Board
   def submit_guess(guess)
     @rows.push(Code.new(guess))
     @total_guesses += 1
+  end
+
+  def get_current_guess_feedback
+    return if @total_guesses == 0
+    [@rows[@total_guesses - 1].num_of_elements_correct_position(@target_code),
+     @rows[@total_guesses - 1].num_of_elements_wrong_position(@target_code)]
   end
 end
 
