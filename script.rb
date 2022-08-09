@@ -23,7 +23,16 @@ class Code
   end
 
   def num_of_elements_wrong_position(target)
-    placeholder = 1
+    index = 0
+    target_copy = Array.new(target.code)
+    @code.reduce(0) { |sum, element|
+      if i = target_copy.index(element)
+        target_copy[i] = nil
+        sum += 1 unless i == index
+      end
+      index += 1
+      sum
+    }
   end
 end
 
@@ -90,7 +99,7 @@ class ComputerPlayer < Player
 end
 
 game = Game.new(ComputerPlayer, HumanPlayer)
-
-
+game.board.submit_guess(["A", "B", "C", "D"])
+puts game.board.get_current_guess_feedback
 
 six = 6
