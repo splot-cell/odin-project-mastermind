@@ -11,6 +11,10 @@ class Code
     @code == target.code
   end
 
+  def compare_to(target)
+
+  end
+
   def num_of_elements_correct_position(target)
     index = 0
     @code.reduce(0) { |sum, element|
