@@ -14,7 +14,7 @@ class Code
   def get_key_values(target)
     result = {}
     result[:correct_positions] = get_correct_positions(@code, target.code)
-    filter = results[:correct_positions].map {|x| !x}
+    filter = result[:correct_positions].map {|x| !x}
     result[:correct_values] = get_correct_values(apply_search_filter(@code, filter), apply_search_filter(target.code, filter))
     [result[:correct_positions].sum {|e| e ? 1 : 0}, result[:correct_values].sum {|e| e ? 1 : 0}]
   end
@@ -37,8 +37,7 @@ class Code
         next
       end
       if found_index = target.index(query[i])
-        filter[pos] = false
-        query = apply_search_filter(query, filter)
+        filter[found_index] = false
         target = apply_search_filter(target, filter)
         values.push(true)
       end
@@ -67,6 +66,7 @@ class Board
   def get_current_guess_feedback
     return if @total_guesses == 0
     @rows[@total_guesses - 1].get_key_values(@target_code)
+  end
 end
 
 class Game
@@ -97,6 +97,9 @@ class Player
 end
 
 class HumanPlayer < Player
+  def generate_code
+    ["A", "B", "C", "C"]
+  end
 end
 
 class ComputerPlayer < Player
@@ -107,8 +110,8 @@ class ComputerPlayer < Player
   end
 end
 
-game = Game.new(ComputerPlayer, HumanPlayer)
-game.board.submit_guess(["A", "B", "C", "D"])
+game = Game.new(HumanPlayer, HumanPlayer)
+game.board.submit_guess(["C", "C", "C", "D"])
 puts game.board.get_current_guess_feedback
 
 six = 6
