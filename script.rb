@@ -11,7 +11,26 @@ class Code
     @code == target.code
   end
 
-  def compare_to(target)
+  def get_key_values(target)
+    result = {}
+    result[:correct_positions] = get_correct_positions(@code, target.code)
+    result[:correct_values] = get_correct_values(@code, target.code, result[:correct_positions])
+  end
+
+  private
+  def get_correct_positions(code1, code2)
+    positions = []
+    code1.each_index do |i|
+      if code1[i] == code2[i]
+        positions.push(true)
+      else
+        positions.push(false)
+      end
+    end
+    positions
+  end
+
+  def get_correct_values(query, target, positions_array)
 
   end
 
@@ -59,9 +78,7 @@ class Board
 
   def get_current_guess_feedback
     return if @total_guesses == 0
-    [@rows[@total_guesses - 1].num_of_elements_correct_position(@target_code),
-     @rows[@total_guesses - 1].num_of_elements_wrong_position(@target_code)]
-  end
+    @rows[@total_guesses - 1].get_key_values(@target_code)
 end
 
 class Game
