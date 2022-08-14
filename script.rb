@@ -14,48 +14,36 @@ class Code
   def get_key_values(target)
     result = {}
     result[:correct_positions] = get_correct_positions(@code, target.code)
-    result[:correct_values] = get_correct_values(@code, target.code, result[:correct_positions])
+    filter = results[:correct_positions].map {|x| !x}
+    result[:correct_values] = get_correct_values(apply_search_filter(@code, filter), apply_search_filter(target.code, filter))
+    [result[:correct_positions].sum {|e| e ? 1 : 0}, result[:correct_values].sum {|e| e ? 1 : 0}]
   end
 
   private
   def get_correct_positions(code1, code2)
-    positions = []
-    code1.each_index do |i|
-      if code1[i] == code2[i]
-        positions.push(true)
-      else
-        positions.push(false)
+    code1.map.with_index {|element, i| element == code2[i] ? true : false}
+  end
+
+  def apply_search_filter(code, filter)
+    code.map.with_index {|element, i| filter[i] ? element : nil}
+  end
+
+  def get_correct_values(query, target)
+    values = []
+    filter = Array.new(query.length, true)
+    query.each_index do |i|
+      unless query[i]
+        values.push(false)
+        next
+      end
+      if found_index = target.index(query[i])
+        filter[pos] = false
+        query = apply_search_filter(query, filter)
+        target = apply_search_filter(target, filter)
+        values.push(true)
       end
     end
-    positions
-  end
-
-  def get_correct_values(query, target, positions_array)
-
-  end
-
-  def num_of_elements_correct_position(target)
-    index = 0
-    @code.reduce(0) { |sum, element|
-      if element == target.code[index]
-        sum += 1
-      end
-      index += 1
-      sum
-    }
-  end
-
-  def num_of_elements_wrong_position(target)
-    index = 0
-    target_copy = Array.new(target.code)
-    @code.reduce(0) { |sum, element|
-      if i = target_copy.index(element)
-        target_copy[i] = nil
-        sum += 1 unless i == index
-      end
-      index += 1
-      sum
-    }
+    values
   end
 end
 
