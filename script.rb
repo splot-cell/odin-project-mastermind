@@ -4,9 +4,11 @@ class Code
   end
 
   protected
+
   attr_reader :code
 
   public
+
   def equal_to?(target)
     @code == target.code
   end
@@ -14,33 +16,36 @@ class Code
   def get_key_values(target)
     result = {}
     result[:correct_positions] = get_correct_positions(@code, target.code)
-    filter = result[:correct_positions].map {|x| !x}
-    result[:correct_values] = get_correct_values(apply_search_filter(@code, filter), apply_search_filter(target.code, filter))
-    [result[:correct_positions].sum {|e| e ? 1 : 0}, result[:correct_values].sum {|e| e ? 1 : 0}]
+    filter = result[:correct_positions].map(&:!)
+    result[:correct_values] = get_correct_values(
+      apply_search_filter(@code, filter),
+      apply_search_filter(target.code, filter)
+    )
+    [result[:correct_positions].sum { |e| e ? 1 : 0 },
+     result[:correct_values].sum { |e| e ? 1 : 0 }]
   end
 
   private
+
   def get_correct_positions(code1, code2)
-    code1.map.with_index {|element, i| element == code2[i] ? true : false}
+    code1.map.with_index { |element, i| element == code2[i] }
   end
 
   def apply_search_filter(code, filter)
-    code.map.with_index {|element, i| filter[i] ? element : nil}
+    code.map.with_index { |element, i| filter[i] ? element : nil }
   end
 
   def get_correct_values(query, target)
-    values = []
+    values = Array.new(query.length, false)
     filter = Array.new(query.length, true)
     query.each_index do |i|
-      unless query[i]
-        values.push(false)
-        next
-      end
-      if found_index = target.index(query[i])
-        filter[found_index] = false
-        target = apply_search_filter(target, filter)
-        values.push(true)
-      end
+      next unless query[i]
+
+      next unless (found_index = target.index(query[i]))
+
+      filter[found_index] = false
+      target = apply_search_filter(target, filter)
+      values[i] = true
     end
     values
   end
@@ -54,7 +59,8 @@ class Board
   end
 
   def current_guess_correct?
-    return if @total_guesses == 0
+    return if @total_guesses.zero?
+
     @rows[@total_guesses - 1].equal_to?(@target_code)
   end
 
@@ -63,8 +69,9 @@ class Board
     @total_guesses += 1
   end
 
-  def get_current_guess_feedback
-    return if @total_guesses == 0
+  def current_guess_keys
+    return if @total_guesses.zero?
+
     @rows[@total_guesses - 1].get_key_values(@target_code)
   end
 end
@@ -73,7 +80,7 @@ class Game
   ROLE = {
     master: 0,
     breaker: 1
-  }
+  }.freeze
   MAX_GUESSES = 12
   def initialize(codemaster_class, codebreaker_class)
     @players = [codemaster_class.new(self, ROLE[:master]),
@@ -84,7 +91,7 @@ class Game
   attr_reader :board
 
   def playable_characters
-    ["A", "B", "C", "D", "E", "F"]
+    %w[A B C D E F]
   end
 end
 
@@ -98,20 +105,18 @@ end
 
 class HumanPlayer < Player
   def generate_code
-    ["A", "B", "C", "C"]
+    %w[A B C C]
   end
 end
 
 class ComputerPlayer < Player
   def generate_code
     code = []
-    4.times { code.push(@game.playable_characters.shuffle.first) }
+    4.times { code.push(@game.playable_characters.sample) }
     code
   end
 end
 
 game = Game.new(HumanPlayer, HumanPlayer)
-game.board.submit_guess(["C", "C", "C", "D"])
-puts game.board.get_current_guess_feedback
-
-six = 6
+game.board.submit_guess(%w[C C C D])
+puts game.board.current_guess_keys
