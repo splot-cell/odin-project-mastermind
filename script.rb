@@ -57,6 +57,7 @@ class Board
     @total_guesses = 0
     @target_code = Code.new(target_code)
   end
+  attr_reader :total_guesses
 
   def current_guess_correct?
     return if @total_guesses.zero?
@@ -73,6 +74,16 @@ class Board
     return if @total_guesses.zero?
 
     @rows[@total_guesses - 1].get_key_values(@target_code)
+  end
+
+  def print_target_code
+    puts "The target code was #{@target_code}"
+  end
+
+  def print_guess_feedback
+    arr = current_guess_keys
+    puts "You got #{arr[0]} code elements totally correct,\n" \
+         "and #{arr[1]} element values correct, but in the wrong place!"
   end
 end
 
@@ -96,6 +107,21 @@ class Game
 
   def code_length
     4
+  end
+
+  def play
+    loop do
+      @board.submit_guess(@players[ROLE[:breaker]].make_guess)
+      @board.print_guess_feedback
+      if @board.current_guess_correct?
+        puts "The CODEBREAKER has cracked the code!"
+        return
+      elsif @board.total_guesses == MAX_GUESSES
+        puts "The CODEMASTER wins!"
+        @board.print_target_code
+        return
+      end
+    end
   end
 end
 
@@ -145,6 +171,5 @@ class TestPlayer < Player
   end
 end
 
-game = Game.new(HumanPlayer, HumanPlayer)
-game.board.submit_guess(%w[C C C D])
-puts game.board.current_guess_keys
+game = Game.new(ComputerPlayer, HumanPlayer)
+game.play
