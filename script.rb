@@ -82,6 +82,7 @@ class Game
     breaker: 1
   }.freeze
   MAX_GUESSES = 12
+  CODE_LENGTH = 4
   def initialize(codemaster_class, codebreaker_class)
     @players = [codemaster_class.new(self, ROLE[:master]),
                 codebreaker_class.new(self, ROLE[:breaker])]
@@ -105,18 +106,40 @@ end
 
 class HumanPlayer < Player
   def generate_code
-    %w[A B C C]
+
+  end
+
+  def make_guess
+
+  end
+
+  private
+
+  def get_user_selection
+    loop do
+      print "Enter a code: "
+      selection = gets.upcase.split(/\s*/, @game.CODE_LENGTH)
+      return selection if selection.all? { |e| @game.playable_characters.include?(e) }
+
+      puts "Invalid code. Try again."
+    end
   end
 end
 
 class ComputerPlayer < Player
   def generate_code
     code = []
-    4.times { code.push(@game.playable_characters.sample) }
+    @game.CODE_LENGTH.times { code.push(@game.playable_characters.sample) }
     code
   end
 end
 
-game = Game.new(HumanPlayer, HumanPlayer)
+class TestPlayer < Player
+  def generate_code
+    %w[A B C C]
+  end
+end
+
+game = Game.new(TestPlayer, HumanPlayer)
 game.board.submit_guess(%w[C C C D])
 puts game.board.current_guess_keys
