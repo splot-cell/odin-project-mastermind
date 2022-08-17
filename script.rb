@@ -25,6 +25,15 @@ class Code
      result[:correct_values].sum { |e| e ? 1 : 0 }]
   end
 
+  def to_s
+    value = ""
+    @code.each do |e|
+      value += "| #{e} "
+    end
+    value += "|"
+    value
+  end
+
   private
 
   def get_correct_positions(code1, code2)
@@ -77,13 +86,14 @@ class Board
   end
 
   def print_target_code
-    puts "The target code was #{@target_code}"
+    puts "The target code was:\n#{@target_code}\n"
   end
 
   def print_guess_feedback
     arr = current_guess_keys
-    puts "You got #{arr[0]} code elements totally correct,\n" \
-         "and #{arr[1]} element values correct, but in the wrong place!"
+    puts "\nCODEBREAKER guesses:\n#{@rows[total_guesses - 1]}\n" \
+         "You got #{arr[0]} code elements totally correct,\n" \
+         "and #{arr[1]} element values correct, but in the wrong place!\n\n"
   end
 end
 
@@ -159,6 +169,7 @@ end
 
 class ComputerPlayer < Player
   def generate_code
+    puts "Generating a secure code...\n"
     code = []
     @game.code_length.times { code.push(@game.playable_characters.sample) }
     code
