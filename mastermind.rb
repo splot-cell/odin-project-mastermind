@@ -1,5 +1,7 @@
-require_relative "instructions_text.rb"
-require_relative "display.rb"
+# frozen_string_literal: true
+
+require_relative "instructions_text"
+require_relative "display"
 
 class Mastermind
   include InstructionsText
@@ -12,6 +14,7 @@ class Mastermind
   end
 
   private
+
   def valid_code_elements
     %w[A B C D E F]
   end

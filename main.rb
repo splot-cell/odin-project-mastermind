@@ -1,3 +1,5 @@
-require_relative "mastermind.rb"
+# frozen_string_literal: true
 
-game = Mastermind.new().play
+require_relative "mastermind"
+
+Mastermind.new.play
