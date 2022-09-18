@@ -11,10 +11,8 @@ module TextContent
 
     #{formatting('underline', 'WELCOME TO MASTERMIND')}
 
-    Type '?' and hit ENTER to view instructions
-
-
     HEREDOC
+      .concat(instructions)
   end
 
   def instructions
@@ -22,9 +20,21 @@ module TextContent
 
     #{formatting('italic', 'Instructions go here')}
 
+    HEREDOC
+  end
+
+  def player_selection
+    <<~HEREDOC
+
     Type '1' and press ENTER to be the code SETTER
     Type '2' and press ENTER to be the code BREAKER
 
     HEREDOC
+  end
+
+  def error_message(error)
+    {
+      "input_error" => formatting("red", "Invalid selection. Try again.")
+    }[error]
   end
 end
