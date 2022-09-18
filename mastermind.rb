@@ -11,6 +11,7 @@ class Mastermind
 
   def play
     puts instructions
+
   end
 
   private
