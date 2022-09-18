@@ -1,21 +1,28 @@
 # frozen_string_literal: true
 
-class Codebreaker
-  def initialize
+require_relative "player"
+
+class Codebreaker < Player
+  def initialize(game, opponent)
     puts "Codebreaker created"
+    opponent.opponent = self
+    super(game, opponent)
+  end
+
+  def make_turn
   end
 end
 
 class HumanCodebreaker < Codebreaker
-  def initialize
+  def initialize(game, opponent)
     puts "Human"
-    super
+    super(game, opponent)
   end
 end
 
 class ComputerCodebreaker < Codebreaker
-  def initialize
+  def initialize(game, opponent)
     puts "Computer"
-    super
+    super(game, opponent)
   end
 end
