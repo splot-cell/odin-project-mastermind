@@ -8,6 +8,13 @@ class Codesetter < Player
     super(game, opponent)
   end
 
+  def self.setter_class(identifier)
+    {
+      "Human" => HumanCodesetter,
+      "Computer" => ComputerCodesetter
+    }[identifier]
+  end
+
   def play
     @game.target_code = create_target_code
     @opponent.make_turn

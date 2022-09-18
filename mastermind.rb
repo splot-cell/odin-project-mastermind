@@ -3,11 +3,11 @@
 require_relative "text_content"
 require_relative "codesetter"
 require_relative "codebreaker"
-require_relative "display"
+require_relative "user_input"
 
 class Mastermind
   include TextContent
-  include Display
+  include UserInput
 
   attr_accessor :target_code
 
@@ -26,21 +26,8 @@ class Mastermind
 
   private
 
-  def select_role
-    puts player_selection
-    selection = gets.chomp
-    return selection if selection.match(/^[1-2]$/)
-
-    puts error_message("input_error")
-    select_role
-  end
-
-  def codesetter_class_from(number_string)
-    number_string == "1" ? HumanCodesetter : ComputerCodesetter
-  end
-
   def initialize_players
-    @players[:codesetter] = codesetter_class_from(select_role).new(self, nil)
+    @players[:codesetter] = Codesetter.setter_class(select_codesetter).new(self, nil)
     @players[:codebreaker] = @players[:codesetter].opponent_class.new(self, @players[:codesetter])
   end
 

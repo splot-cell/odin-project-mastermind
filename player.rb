@@ -1,7 +1,14 @@
+# frozen_string_literal: true
+
 class Player
-  attr_accessor :opponent
   def initialize(game, opponent)
     @game = game
+    @opponent = opponent
+  end
+
+  protected
+
+  def opponent=(opponent)
     @opponent = opponent
   end
 end
