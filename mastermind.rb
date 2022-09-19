@@ -59,7 +59,7 @@ class Mastermind
 
   def codesetter_wins
     puts out_of_guesses
-    puts target_code
+    puts format_code(target_code)
   end
 
   def codebreaker_wins
