@@ -28,4 +28,17 @@ module UserInput
       puts error_message("code_error")
     end
   end
+
+  def play_again?
+    puts play_again
+    selection = gets.chomp
+    return bool_from(selection) if selection.match(/[yn]/)
+
+    puts error_message("selection_error")
+    play_again?
+  end
+
+  def bool_from(char)
+    char == "y"
+  end
 end

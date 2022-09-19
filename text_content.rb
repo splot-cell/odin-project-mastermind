@@ -62,4 +62,20 @@ module TextContent
 
     HEREDOC
   end
+
+  def play_again
+    <<~HEREDOC
+
+    Would you like to play again? (y/n)
+
+    HEREDOC
+  end
+
+  def thank_you
+    <<~HEREDOC
+
+    Thank you for playing MASTERMIND.
+
+    HEREDOC
+  end
 end

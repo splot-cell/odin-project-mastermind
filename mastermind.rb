@@ -27,7 +27,7 @@ class Mastermind
     initialize_players
     codesetter.set_target_code
     guess_loop
-    Mastermind.new.play if play_again?
+    replay
   end
 
   def guess_loop
@@ -83,7 +83,11 @@ class Mastermind
     end
   end
 
-  def play_again?
-    true
+  def replay
+    if play_again?
+      Mastermind.new.play
+    else
+      puts thank_you
+    end
   end
 end
