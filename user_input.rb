@@ -22,7 +22,8 @@ module UserInput
     loop do
       puts code_prompt
       code = gets.chomp.upcase.split(/\s*/, code_length)
-      return code if code.all? { |e| valid_code_elements.include?(e) }
+      return code if code.any? &&
+                     code.all? { |e| valid_code_elements.include?(e) }
 
       puts error_message("code_error")
     end
