@@ -4,10 +4,7 @@ require_relative "player"
 require_relative "user_input"
 require_relative "text_content"
 
-class Codebreaker < Player
-end
-
-class HumanCodebreaker < Codebreaker
+class HumanCodebreaker < Player
   include UserInput
 
   def guess
@@ -15,7 +12,7 @@ class HumanCodebreaker < Codebreaker
   end
 end
 
-class ComputerCodebreaker < Codebreaker
+class ComputerCodebreaker < Player
   def guess
     %w[A B C D]
   end
