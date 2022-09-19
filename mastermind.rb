@@ -75,14 +75,12 @@ class Mastermind
 
   def initialize_players
     if select_codesetter == "Human"
-      codesetter_class = HumanCodesetter
-      codebreaker_class = ComputerCodebreaker
+      @codesetter = HumanCodesetter.new(self)
+      @codebreaker = ComputerCodebreaker.new(self)
     else
-      codesetter_class = ComputerCodesetter
-      codebreaker_class = HumanCodebreaker
+      @codesetter = ComputerCodesetter.new(self)
+      @codebreaker = HumanCodebreaker.new(self)
     end
-    @codesetter = codesetter_class.new(self)
-    @codebreaker = codebreaker_class.new(self)
   end
 
   def reset
