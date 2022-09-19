@@ -8,7 +8,7 @@ class HumanCodebreaker < Player
   include UserInput
 
   def guess
-    code_from_user
+    code_from_user(@game.code_length, @game.valid_code_elements)
   end
 end
 

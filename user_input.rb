@@ -18,11 +18,11 @@ module UserInput
     selection_string == "1" ? "Human" : "Computer"
   end
 
-  def code_from_user
+  def code_from_user(code_length, valid_code_elements)
     loop do
       puts code_prompt
-      code = gets.chomp.upcase.split(/\s*/, @game.code_length)
-      return code if code.all? { |e| @game.valid_code_elements.include?(e) }
+      code = gets.chomp.upcase.split(/\s*/, code_length)
+      return code if code.all? { |e| valid_code_elements.include?(e) }
 
       puts error_message("code_error")
     end
