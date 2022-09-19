@@ -18,4 +18,9 @@ class HumanCodesetter < Codesetter
 end
 
 class ComputerCodesetter < Codesetter
+  def set_target_code
+    code = []
+    @game.code_length.times { code.push(@game.valid_code_elements.sample) }
+    @game.target_code = code
+  end
 end
