@@ -54,6 +54,14 @@ class Mastermind
     %w[A B C D E F]
   end
 
+  def last_guess
+    guesses[guess - 1]
+  end
+
+  def last_hint
+    hints[guess - 1]
+  end
+
   private
 
   def codesetter_wins
@@ -63,14 +71,6 @@ class Mastermind
 
   def codebreaker_wins
     puts code_broken
-  end
-
-  def last_guess
-    guesses[guess - 1]
-  end
-
-  def last_hint
-    hints[guess - 1]
   end
 
   def initialize_players
