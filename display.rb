@@ -11,20 +11,31 @@ module Display
   end
 
   def print_board
-    0.upto(guess - 1) do |i|
+    0.upto(max_guesses) do |i|
       print_row(i)
     end
   end
 
+  def empty_code
+    Array.new(4, " ")
+  end
+
+  def empty_hint
+    { positions: " ", values: " " }
+  end
+
   def print_row(row_number)
-    puts "#{format_code(guesses[row_number])} || #{format_hint(row_number)}"
+    guess = row_number < @guess ? guesses[row_number] : empty_code
+    hint = row_number < @guess ? hints[row_number] : empty_hint
+
+    puts "#{format_code(guess)} || #{format_hint(hint)}"
   end
 
   def format_code(code)
     code.join("  ")
   end
 
-  def format_hint(hint_number)
-    "#{hints[hint_number][:positions]}  #{hints[hint_number][:values]}"
+  def format_hint(hint)
+    "#{hint[:positions]}  #{hint[:values]}"
   end
 end
