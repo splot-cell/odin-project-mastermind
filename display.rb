@@ -3,7 +3,7 @@
 module Display
   def update_display
     clear_console
-    puts "Here is an update"
+    print_board
   end
 
   def clear_console
@@ -11,19 +11,20 @@ module Display
   end
 
   def print_board
-    0.upto(max_guesses) do |i|
+    0.upto(guess - 1) do |i|
       print_row(i)
     end
   end
 
   def print_row(row_number)
-    print_guess(row_number)
-    print_hint(row_number)
+    puts "#{format_guess(row_number)} || #{format_hint(row_number)}"
   end
 
-  def print_guess(guess_number)
+  def format_guess(guess_number)
+    guesses[guess_number].join("  ")
   end
 
-  def print_hint(hint_number)
+  def format_hint(hint_number)
+    "#{hints[hint_number][:positions]}  #{hints[hint_number][:values]}"
   end
 end

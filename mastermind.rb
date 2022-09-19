@@ -59,11 +59,11 @@ class Mastermind
 
   def codesetter_wins
     puts out_of_guesses
+    puts target_code
   end
 
   def codebreaker_wins
     puts code_broken
-    puts target_code
   end
 
   def last_guess
