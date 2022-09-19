@@ -16,11 +16,11 @@ module UserInput
 
   def user_selection
     loop do
-      print "Enter a code: "
+      puts player_guess
       selection = gets.chomp.upcase.split(/\s*/, @game.code_length)
       return selection if selection.all? { |e| @game.valid_code_elements.include?(e) }
 
-      puts "Invalid code. Try again."
+      puts error_message("code_error")
     end
   end
 end

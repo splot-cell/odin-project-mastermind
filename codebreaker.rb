@@ -2,6 +2,7 @@
 
 require_relative "player"
 require_relative "user_input"
+require_relative "text_content"
 
 class Codebreaker < Player
   def initialize(game, opponent)
@@ -12,6 +13,7 @@ end
 
 class HumanCodebreaker < Codebreaker
   include UserInput
+  include TextContent
   def make_turn
     @game.board.push(user_selection)
     @game.guess += 1
