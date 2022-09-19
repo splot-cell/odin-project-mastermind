@@ -31,13 +31,13 @@ class Mastermind
   end
 
   def guess_loop
+    update_display
     while guess < max_guesses
-      update_display
       guesses.push(codebreaker.guess)
       @guess += 1
-      return codebreaker_wins if last_guess == target_code
-
       hints.push(evaluate_guess(last_guess, target_code))
+      update_display
+      return codebreaker_wins if last_guess == target_code
     end
     codesetter_wins
   end

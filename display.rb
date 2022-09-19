@@ -11,7 +11,7 @@ module Display
   end
 
   def print_board
-    0.upto(max_guesses) do |i|
+    0.upto(max_guesses - 1) do |i|
       print_row(i)
     end
   end
@@ -25,8 +25,8 @@ module Display
   end
 
   def print_row(row_number)
-    guess = row_number < @guess ? guesses[row_number] : empty_code
-    hint = row_number < @guess ? hints[row_number] : empty_hint
+    guess = guesses[row_number] || empty_code
+    hint = hints[row_number] || empty_hint
 
     puts "#{format_code(guess)} || #{format_hint(hint)}"
   end
