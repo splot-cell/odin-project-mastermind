@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class Player
-  def initialize(game, opponent)
+  attr_writer :opponent
+  def initialize(game, opponent = nil)
     @game = game
     @opponent = opponent
   end
 
-  protected
-
-  def opponent=(opponent)
-    @opponent = opponent
+  def game_over?
+    @game.guess == @game.max_guesses
   end
 end

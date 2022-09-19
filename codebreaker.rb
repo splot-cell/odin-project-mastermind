@@ -1,28 +1,23 @@
 # frozen_string_literal: true
 
 require_relative "player"
+require_relative "user_input"
 
 class Codebreaker < Player
   def initialize(game, opponent)
-    puts "Codebreaker created"
     opponent.opponent = self
     super(game, opponent)
-  end
-
-  def make_turn
   end
 end
 
 class HumanCodebreaker < Codebreaker
-  def initialize(game, opponent)
-    puts "Human"
-    super(game, opponent)
+  include UserInput
+  def make_turn
+    @game.board.push(user_selection)
+    @game.guess += 1
+    @opponent.make_turn
   end
 end
 
 class ComputerCodebreaker < Codebreaker
-  def initialize(game, opponent)
-    puts "Computer"
-    super(game, opponent)
-  end
 end

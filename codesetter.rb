@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 require_relative "player"
+require_relative "codebreaker"
 
 class Codesetter < Player
-  def initialize(game, opponent)
-    puts "Codesetter created"
-    super(game, opponent)
-  end
-
   def self.setter_class(identifier)
     {
       "Human" => HumanCodesetter,
@@ -21,28 +17,21 @@ class Codesetter < Player
   end
 
   def create_target_code
-    []
+    %w[A B C C]
   end
 end
 
 class HumanCodesetter < Codesetter
-  def initialize(game, opponent)
-    puts "Human"
-    super(game, opponent)
-  end
-
   def opponent_class
     ComputerCodebreaker
   end
 end
 
 class ComputerCodesetter < Codesetter
-  def initialize(game, opponent)
-    puts "Computer"
-    super(game, opponent)
-  end
-
   def opponent_class
     HumanCodebreaker
+  end
+
+  def make_turn
   end
 end

@@ -9,14 +9,14 @@ class Mastermind
   include TextContent
   include UserInput
 
-  attr_accessor :target_code
-
-  BOARD_SIZE = 12
+  attr_accessor :target_code, :board, :guess
 
   def initialize
     puts welcome
     @players = {}
     @target_code = []
+    @guess = 0
+    @board = []
   end
 
   def play
@@ -24,15 +24,22 @@ class Mastermind
     @players[:codesetter].play
   end
 
-  private
+  def code_length
+    4
+  end
 
-  def initialize_players
-    @players[:codesetter] = Codesetter.setter_class(select_codesetter).new(self, nil)
-    @players[:codebreaker] = @players[:codesetter].opponent_class.new(self, @players[:codesetter])
+  def max_guesses
+    12
   end
 
   def valid_code_elements
     %w[A B C D E F]
   end
 
+  private
+
+  def initialize_players
+    @players[:codesetter] = Codesetter.setter_class(select_codesetter).new(self)
+    @players[:codebreaker] = @players[:codesetter].opponent_class.new(self, @players[:codesetter])
+  end
 end
