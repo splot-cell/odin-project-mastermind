@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 require_relative "text_content"
 
 module UserInput
+  include TextContent
   def select_codesetter
     puts player_selection
     selection = gets.chomp
     return codesetter_from(selection) if selection.match(/^[1-2]$/)
 
-    puts error_message("input_error")
+    puts error_message("selection_error")
     select_codesetter
   end
 
@@ -14,9 +17,9 @@ module UserInput
     selection_string == "1" ? "Human" : "Computer"
   end
 
-  def user_selection
+  def code_from_user
     loop do
-      puts player_guess
+      puts code_prompt
       selection = gets.chomp.upcase.split(/\s*/, @game.code_length)
       return selection if selection.all? { |e| @game.valid_code_elements.include?(e) }
 

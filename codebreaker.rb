@@ -5,22 +5,18 @@ require_relative "user_input"
 require_relative "text_content"
 
 class Codebreaker < Player
-  def initialize(game, opponent)
-    opponent.opponent = self
-    super(game, opponent)
-  end
 end
 
 class HumanCodebreaker < Codebreaker
   include UserInput
-  include TextContent
 
-  def make_turn
-    @game.guesses.push(user_selection)
-    @game.guess += 1
-    @opponent.make_turn
+  def guess
+    code_from_user
   end
 end
 
 class ComputerCodebreaker < Codebreaker
+  def guess
+    %w[A B C D]
+  end
 end

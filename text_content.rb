@@ -34,12 +34,12 @@ module TextContent
 
   def error_message(error)
     {
-      "input_error" => formatting("red", "Invalid selection. Try again."),
+      "selection_error" => formatting("red", "Invalid selection. Try again."),
       "code_error" => formatting("red", "Invalid code. Try again.")
     }[error]
   end
 
-  def player_guess
+  def code_prompt
     <<~HEREDOC
 
     Enter a code:
@@ -51,7 +51,7 @@ module TextContent
 
     OH NO! You ran out of guesses!
 
-    The target code was
+    The target code was #{target_code}
     HEREDOC
   end
 
