@@ -7,7 +7,8 @@ require_relative "text_content"
 class HumanCodesetter < Player
   include UserInput
   def set_target_code
-    @game.target_code = code_from_user
+    @game.target_code = code_from_user(@game.code_length,
+                                       @game.valid_code_elements)
   end
 end
 
