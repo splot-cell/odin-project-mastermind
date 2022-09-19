@@ -27,7 +27,7 @@ class Mastermind
     initialize_players
     codesetter.set_target_code
     guess_loop
-    reset if play_again?
+    Mastermind.new.play if play_again?
   end
 
   def guess_loop
@@ -81,13 +81,6 @@ class Mastermind
       @codesetter = ComputerCodesetter.new(self)
       @codebreaker = HumanCodebreaker.new(self)
     end
-  end
-
-  def reset
-    @guess = 0
-    @guesses = []
-    @hints = []
-    play
   end
 
   def play_again?
