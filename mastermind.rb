@@ -37,7 +37,7 @@ class Mastermind
       @guess += 1
       return codebreaker_wins if last_guess == target_code
 
-      evaluate_last_guess
+      hints.push(evaluate_guess(last_guess, target_code))
       update_display
     end
     codesetter_wins

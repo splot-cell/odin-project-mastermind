@@ -4,6 +4,7 @@ require_relative "text_content"
 
 module UserInput
   include TextContent
+
   def select_codesetter
     puts player_selection
     selection = gets.chomp

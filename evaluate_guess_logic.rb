@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
 module EvaluteGuessLogic
-  def evaluate_last_guess
-    correct_positions = evaluate_positions(last_guess, target_code)
+  def evaluate_guess(guess, target)
+    correct_positions = evaluate_positions(guess, target)
 
     element_mask = correct_positions.map(&:!)
-    correct_values = evaluate_values(apply_code_mask(last_guess, element_mask),
-                                     apply_code_mask(target_code, element_mask))
+    correct_values = evaluate_values(apply_code_mask(guess, element_mask),
+                                     apply_code_mask(target, element_mask))
 
-    evaluation = {
+    {
       positions: correct_positions.sum { |e| e ? 1 : 0 },
       values: correct_values.sum { |e| e ? 1 : 0 }
     }
-
-    hints.push(evaluation)
   end
 
   def evaluate_positions(code1, code2)
