@@ -17,11 +17,11 @@ module Display
   end
 
   def print_row(row_number)
-    puts "#{format_guess(row_number)} || #{format_hint(row_number)}"
+    puts "#{format_code(guesses[row_number])} || #{format_hint(row_number)}"
   end
 
-  def format_guess(guess_number)
-    guesses[guess_number].join("  ")
+  def format_code(code)
+    code.join("  ")
   end
 
   def format_hint(hint_number)
