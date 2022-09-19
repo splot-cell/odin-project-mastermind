@@ -3,8 +3,7 @@
 class Player
   attr_writer :opponent
 
-  def initialize(game, opponent = nil)
+  def initialize(game)
     @game = game
-    @opponent = opponent
   end
 end
