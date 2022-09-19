@@ -51,7 +51,7 @@ module TextContent
 
     OH NO! You ran out of guesses!
 
-    The target code was #{target_code}
+    The target code was
     HEREDOC
   end
 

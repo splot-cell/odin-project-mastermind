@@ -27,7 +27,7 @@ class Mastermind
   def play
     initialize_players
     codesetter.set_target_code
-    puts guess_loop
+    guess_loop
     reset if play_again?
   end
 
@@ -35,12 +35,12 @@ class Mastermind
     while guess < max_guesses
       guesses.push(codebreaker.guess)
       @guess += 1
-      return code_broken if last_guess == target_code
+      return codebreaker_wins if last_guess == target_code
 
       evaluate_last_guess
       update_display
     end
-    out_of_guesses
+    codesetter_wins
   end
 
   def code_length
@@ -56,6 +56,15 @@ class Mastermind
   end
 
   private
+
+  def codesetter_wins
+    puts out_of_guesses
+  end
+
+  def codebreaker_wins
+    puts code_broken
+    puts target_code
+  end
 
   def last_guess
     guesses[guess - 1]
