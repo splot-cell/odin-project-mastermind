@@ -10,4 +10,8 @@ class Player
   def game_over?
     @game.guess == @game.max_guesses
   end
+
+  def correct_guess?
+    @game.target_code == @game.guesses[@game.guess - 1]
+  end
 end

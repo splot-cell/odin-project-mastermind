@@ -9,14 +9,15 @@ class Mastermind
   include TextContent
   include UserInput
 
-  attr_accessor :target_code, :board, :guess
+  attr_accessor :target_code, :guesses, :guess, :hints
 
   def initialize
     puts welcome
     @players = {}
     @target_code = []
     @guess = 0
-    @board = []
+    @guesses = []
+    @hints = []
   end
 
   def play

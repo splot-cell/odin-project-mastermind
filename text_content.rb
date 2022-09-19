@@ -45,4 +45,21 @@ module TextContent
     Enter a code:
     HEREDOC
   end
+
+  def out_of_guesses
+    <<~HEREDOC
+
+    OH NO! You ran out of guesses!
+
+    The target code was
+    HEREDOC
+  end
+
+  def code_broken
+    <<~HEREDOC
+
+    The codebreaker guessed correctly! CODE BROKEN!
+
+    HEREDOC
+  end
 end

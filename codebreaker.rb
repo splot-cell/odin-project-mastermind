@@ -14,8 +14,9 @@ end
 class HumanCodebreaker < Codebreaker
   include UserInput
   include TextContent
+
   def make_turn
-    @game.board.push(user_selection)
+    @game.guesses.push(user_selection)
     @game.guess += 1
     @opponent.make_turn
   end
