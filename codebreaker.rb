@@ -13,7 +13,23 @@ class HumanCodebreaker < Player
 end
 
 class ComputerCodebreaker < Player
+  def initialize(game)
+    super
+    initialize_guesser
+  end
+
   def guess
     %w[A B C D]
+  end
+
+  private
+
+  def initialize_guesser
+    @element_stack = @game.valid_code_elements.shuffle
+    @identified_elements = []
+  end
+
+  def code_length
+    @game.code_length
   end
 end
