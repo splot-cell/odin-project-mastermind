@@ -14,11 +14,10 @@ class Mastermind
   include Display
 
   attr_accessor :target_code, :guesses, :guess, :hints
+  attr_reader :codesetter, :codebreaker
 
   def initialize
     puts welcome
-    @players = {}
-    @target_code = []
     @guess = 0
     @guesses = []
     @hints = []
@@ -74,14 +73,6 @@ class Mastermind
     hints[guess - 1]
   end
 
-  def codesetter
-    @players[:codesetter]
-  end
-
-  def codebreaker
-    @players[:codebreaker]
-  end
-
   def initialize_players
     if select_codesetter == "Human"
       codesetter_class = HumanCodesetter
@@ -90,8 +81,8 @@ class Mastermind
       codesetter_class = ComputerCodesetter
       codebreaker_class = HumanCodebreaker
     end
-    @players[:codesetter] = codesetter_class.new(self)
-    @players[:codebreaker] = codebreaker_class.new(self)
+    @codesetter = codesetter_class.new(self)
+    @codebreaker = codebreaker_class.new(self)
   end
 
   def reset
