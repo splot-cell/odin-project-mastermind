@@ -19,7 +19,7 @@ module Display
   end
 
   def guess_area_size
-    12
+    14
   end
 
   def hint_area_size
@@ -54,7 +54,7 @@ module Display
   end
 
   def format_code(code)
-    code.join("  ")
+    code.map { |e| color_element(e) }.join("")
   end
 
   def format_hint(hint)
