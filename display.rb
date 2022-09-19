@@ -11,9 +11,31 @@ module Display
   end
 
   def print_board
+    puts top_row
     0.upto(max_guesses - 1) do |i|
       print_row(i)
     end
+    puts bottom_row
+  end
+
+  def guess_area_size
+    12
+  end
+
+  def hint_area_size
+    6
+  end
+
+  def top_row
+    "#{border(:top_left)}#{border(:hor) * guess_area_size}" \
+      "#{border(:top_t)}#{border(:hor) * hint_area_size}" \
+      "#{border(:top_right)}"
+  end
+
+  def bottom_row
+    "#{border(:bottom_left)}#{border(:hor) * guess_area_size}" \
+      "#{border(:bottom_t)}#{border(:hor) * hint_area_size}" \
+      "#{border(:bottom_right)}"
   end
 
   def empty_code
@@ -28,7 +50,7 @@ module Display
     guess = guesses[row_number] || empty_code
     hint = hints[row_number] || empty_hint
 
-    puts "#{format_code(guess)} || #{format_hint(hint)}"
+    puts "#{border(:ver)} #{format_code(guess)} #{border(:ver)} #{format_hint(hint)} #{border(:ver)}"
   end
 
   def format_code(code)

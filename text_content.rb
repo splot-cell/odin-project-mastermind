@@ -78,4 +78,20 @@ module TextContent
 
     HEREDOC
   end
+
+  def border(type)
+    {
+      top_left: "\u2554",
+      top_right: "\u2557",
+      bottom_left: "\u255a",
+      bottom_right: "\u255b",
+      left_t: "\u2560",
+      right_t: "\u2563",
+      top_t: "\u2566",
+      bottom_t: "\u2569",
+      hor: "\u2550",
+      ver: "\u2551",
+      cross: "\u256c"
+    }[type]
+  end
 end
