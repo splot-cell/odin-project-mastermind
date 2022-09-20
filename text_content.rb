@@ -33,7 +33,7 @@ module TextContent
 
     When prompted, you can enter codes by typing four letters and pressing enter.
 
-    For each guess, the game will provide you a hint in the form of two numbers:
+    For each guess, the game will provide you a #{formatting('bold', 'HINT')} in the form of two numbers:
       1) The first number will display how many code elements are the corect value #{formatting('bold', 'and')} are in the correct position.
       2) The second number will display how many code elements have the correct value, but are in the #{formatting('bold', 'incorrect')} position.
 
