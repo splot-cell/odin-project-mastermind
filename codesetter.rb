@@ -13,9 +13,19 @@ class HumanCodesetter < Player
 end
 
 class ComputerCodesetter < Player
+  include TextContent
   def set_target_code
+    thinking
     code = []
     @game.code_length.times { code.push(@game.valid_code_elements.sample) }
     @game.target_code = code
+  end
+
+  def thinking
+    print setting_code
+    3.times do
+      print "."
+      sleep(1)
+    end
   end
 end

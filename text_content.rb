@@ -112,4 +112,8 @@ module TextContent
       cross: "\u256c"
     }[type]
   end
+
+  def setting_code
+    "\n\nSetting a secure code"
+  end
 end
