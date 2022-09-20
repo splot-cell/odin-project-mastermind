@@ -9,15 +9,7 @@ module TextContent
   def welcome
     <<~HEREDOC
 
-
-    #{formatting('bold-underline', 'WELCOME TO MASTERMIND')}
-
-    HEREDOC
-      .concat(instructions)
-  end
-
-  def instructions
-    <<~HEREDOC
+    #{formatting('bold-underline', '==WELCOME TO MASTERMIND==')}
 
     #{formatting('italic-underline', 'How to play')}
 
