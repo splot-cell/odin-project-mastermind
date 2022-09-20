@@ -9,7 +9,7 @@ module TextContent
   def welcome
     <<~HEREDOC
 
-    #{formatting('bold-underline', '==WELCOME TO MASTERMIND==')}
+    #{formatting('bold-underline', '== WELCOME TO MASTERMIND ==')}
 
     #{formatting('italic-underline', 'How to play')}
 
