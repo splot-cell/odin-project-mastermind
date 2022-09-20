@@ -11,6 +11,8 @@ module Display
   end
 
   def print_board
+    puts "Target code: #{format_code(target_code)}" if
+      codesetter.class == HumanCodesetter
     puts top_row
     0.upto(max_guesses - 1) do |i|
       print_row(i)
