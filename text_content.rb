@@ -26,7 +26,7 @@ module TextContent
     The codeSETTER sets a target code, which the codeBREAKER must guess in 12 or fewer turns.
 
     Codes are made up of four code #{formatting('bold', 'ELEMENTS')}. Acceptable elements are:
-      #{color_element("A")} #{color_element("B")} #{color_element("C")} #{color_element("D")} #{color_element("E")} #{color_element("F")}
+      #{color_element('A')} #{color_element('B')} #{color_element('C')} #{color_element('D')} #{color_element('E')} #{color_element('F')}
 
     So, an example code may look like:
       #{format_code(%w[E B C C])}
