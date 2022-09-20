@@ -86,6 +86,7 @@ class Mastermind
 
   def replay
     if play_again?
+      clear_console
       Mastermind.new.play
     else
       puts thank_you

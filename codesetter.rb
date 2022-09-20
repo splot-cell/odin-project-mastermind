@@ -10,6 +10,8 @@ class HumanCodesetter < Player
   def set_target_code
     @game.target_code = code_from_user(@game.code_length,
                                        @game.valid_code_elements)
+    puts "\nCODE ACCEPTED!"
+    sleep(1.5)
   end
 end
 
