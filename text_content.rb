@@ -9,7 +9,7 @@ module TextContent
     <<~HEREDOC
 
 
-    #{formatting('underline', 'WELCOME TO MASTERMIND')}
+    #{formatting('bold-underline', 'WELCOME TO MASTERMIND')}
 
     HEREDOC
       .concat(instructions)
@@ -18,7 +18,25 @@ module TextContent
   def instructions
     <<~HEREDOC
 
-    #{formatting('italic', 'Instructions go here')}
+    #{formatting('italic-underline', 'How to play')}
+
+    You can play as either the code#{formatting('bold', 'SETTER')} or code#{formatting('bold', 'BREAKER')}.
+
+    The codeSETTER sets a target code, which the codeBREAKER must guess in 12 or fewer turns.
+
+    Codes are made up of four code #{formatting('bold', 'ELEMENTS')}. Acceptable elements are:
+      #{color_element("A")} #{color_element("B")} #{color_element("C")} #{color_element("D")} #{color_element("E")} #{color_element("F")}
+
+    So, an example code may look like:
+      #{format_code(%w[E B C C])}
+
+    When prompted, you can enter codes by typing four letters and pressing enter.
+
+    For each guess, the game will provide you a hint in the form of two numbers:
+      1) The first number will display how many code elements are the corect value #{formatting('bold', 'and')} are in the correct position.
+      2) The second number will display how many code elements have the correct value, but are in the #{formatting('bold', 'incorrect')} position.
+
+    Good luck!
 
     HEREDOC
   end
@@ -26,8 +44,8 @@ module TextContent
   def player_selection
     <<~HEREDOC
 
-    Type '1' and press ENTER to be the code SETTER
-    Type '2' and press ENTER to be the code BREAKER
+    Type '1' and press enter to be the code SETTER
+    Type '2' and press enter to be the code BREAKER
 
     HEREDOC
   end
@@ -49,7 +67,7 @@ module TextContent
   def out_of_guesses
     <<~HEREDOC
 
-    OH NO! You ran out of guesses!
+    The codebreaker ran out of guesses!
 
     The target code was
     HEREDOC
