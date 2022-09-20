@@ -27,5 +27,7 @@ class ComputerCodesetter < Player
       print "."
       sleep(1)
     end
+    puts "\nCODE SET!"
+    sleep(1.5)
   end
 end
