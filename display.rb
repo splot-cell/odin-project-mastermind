@@ -12,7 +12,7 @@ module Display
 
   def print_board
     puts "Target code: #{format_code(target_code)}" if
-      codesetter.class == HumanCodesetter
+      codesetter.instanceOf?(HumanCodesetter)
     puts top_row
     0.upto(max_guesses - 1) do |i|
       print_row(i)
