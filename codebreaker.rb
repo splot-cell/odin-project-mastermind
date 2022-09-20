@@ -13,12 +13,14 @@ class HumanCodebreaker < Player
 end
 
 class ComputerCodebreaker < Player
+  include TextContent
   def initialize(game)
     super
     initialize_guesser
   end
 
   def guess
+    thinking
     return initial_guess if @game.guess.zero?
 
     process_last_hint
@@ -30,6 +32,14 @@ class ComputerCodebreaker < Player
   end
 
   private
+
+  def thinking
+    print making_guess
+    3.times do
+      print(".")
+      sleep(0.5)
+    end
+  end
 
   def create_permutations
     @permutations = @identified_elements.permutation.to_a

@@ -116,4 +116,8 @@ module TextContent
   def setting_code
     "\n\nSetting a secure code"
   end
+
+  def making_guess
+    "\n\nThinking of a code"
+  end
 end
