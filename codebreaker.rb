@@ -43,7 +43,7 @@ class ComputerCodebreaker < Player
 
   def create_permutations
     @permutations = @identified_elements.permutation.to_a
-    @permutations.uniq!
+    @permutations.uniq!.shuffle!
     @game.guesses.each do |guess|
       @permutations.delete(guess) if @permutations.include?(guess)
     end
