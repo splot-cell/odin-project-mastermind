@@ -2,6 +2,7 @@
 
 require_relative "console_formatting"
 
+# module containing all text for communicating with user
 module TextContent
   include Formatting
 

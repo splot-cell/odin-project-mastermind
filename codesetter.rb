@@ -4,6 +4,7 @@ require_relative "player"
 require_relative "user_input"
 require_relative "text_content"
 
+# class for game mode where human is codesetter
 class HumanCodesetter < Player
   include UserInput
   def set_target_code
@@ -12,6 +13,7 @@ class HumanCodesetter < Player
   end
 end
 
+# class for game mode where computer is codesetter
 class ComputerCodesetter < Player
   include TextContent
   def set_target_code

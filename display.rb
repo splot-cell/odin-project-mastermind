@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# module for displaying game state in console
 module Display
   def update_display
     clear_console

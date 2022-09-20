@@ -2,6 +2,7 @@
 
 require_relative "text_content"
 
+# module containing user input fetching and sanitation
 module UserInput
   include TextContent
 

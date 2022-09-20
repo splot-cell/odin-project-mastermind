@@ -7,6 +7,7 @@ require_relative "user_input"
 require_relative "evaluate_guess_logic"
 require_relative "display"
 
+# class for storing game state and player objects
 class Mastermind
   include TextContent
   include UserInput

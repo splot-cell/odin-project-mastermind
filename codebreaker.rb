@@ -4,6 +4,7 @@ require_relative "player"
 require_relative "user_input"
 require_relative "text_content"
 
+# class for game mode where human is codebreaker
 class HumanCodebreaker < Player
   include UserInput
 
@@ -12,6 +13,7 @@ class HumanCodebreaker < Player
   end
 end
 
+# class for game mode where computer is codebreaker
 class ComputerCodebreaker < Player
   include TextContent
   def initialize(game)

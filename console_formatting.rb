@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# helper functions for formatting console output
 module Formatting
   def formatting(description, string)
     {

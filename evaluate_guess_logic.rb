@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# logic for generating hints from guesses
 module EvaluteGuessLogic
   def evaluate_guess(guess, target)
     correct_positions = evaluate_positions(guess, target)

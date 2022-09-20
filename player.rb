@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
+# superclass for all player classes
 class Player
-  attr_writer :opponent
-
   def initialize(game)
     @game = game
   end
