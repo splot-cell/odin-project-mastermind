@@ -6,4 +6,4 @@ A command line game of Mastermind, written in Ruby.
 - Use object-oriented principals to recreate the game
 - Design and implement algorithms for giving the user hints and for providing guesses
 ## Live preview
-[See a live preview on Replit.](https://replit.com/@splot-cell/odin-project-mastermind).
+[See a live preview on Replit.](https://replit.com/@splot-cell/odin-project-mastermind)
